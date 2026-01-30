@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Inter-House Sports Competition Design System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Dark sports theme */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 9%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Bold gold primary for sports */
+    --primary: 45 93% 47%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 33% 22%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 20%;
+    --input: 217 33% 17%;
+    --ring: 45 93% 47%;
+
+    --radius: 0.75rem;
+
+    /* Medal colors */
+    --gold: 45 93% 47%;
+    --silver: 220 9% 70%;
+    --bronze: 30 41% 45%;
+
+    /* House colors */
+    --house-red: 0 84% 60%;
+    --house-blue: 217 91% 60%;
+    --house-green: 142 71% 45%;
+    --house-yellow: 48 96% 53%;
+
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(45, 93%, 47%) 0%, hsl(35, 93%, 55%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(222, 47%, 6%) 0%, hsl(222, 47%, 11%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(222, 47%, 9%) 0%, hsl(222, 47%, 12%) 100%);
+
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(45, 93%, 47%, 0.15);
+    --shadow-card: 0 4px 24px hsl(0, 0%, 0%, 0.3);
+
+    /* Sidebar colors */
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 45 93% 47%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 45 93% 47%;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 45 93% 47%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 22%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 20%;
+    --input: 217 33% 17%;
+    --ring: 45 93% 47%;
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 45 93% 47%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 45 93% 47%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(45, 93%, 47%) 0%, hsl(35, 93%, 55%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-hero {
+    background: linear-gradient(180deg, hsl(222, 47%, 6%) 0%, hsl(222, 47%, 11%) 100%);
+  }
+
+  .bg-gradient-card {
+    background: linear-gradient(135deg, hsl(222, 47%, 9%) 0%, hsl(222, 47%, 12%) 100%);
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 30px hsl(45, 93%, 47%, 0.15);
+  }
+
+  .shadow-gold {
+    box-shadow: 0 4px 20px hsl(45, 93%, 47%, 0.25);
+  }
+
+  .medal-gold {
+    background: linear-gradient(135deg, hsl(45, 93%, 47%) 0%, hsl(35, 93%, 55%) 100%);
+    color: hsl(222, 47%, 6%);
+  }
+
+  .medal-silver {
+    background: linear-gradient(135deg, hsl(220, 9%, 70%) 0%, hsl(220, 9%, 80%) 100%);
+    color: hsl(222, 47%, 6%);
+  }
+
+  .medal-bronze {
+    background: linear-gradient(135deg, hsl(30, 41%, 45%) 0%, hsl(30, 41%, 55%) 100%);
+    color: hsl(210, 40%, 98%);
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px hsl(0, 0%, 0%, 0.4);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(217, 33%, 17%) 25%,
+    hsl(217, 33%, 22%) 50%,
+    hsl(217, 33%, 17%) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}

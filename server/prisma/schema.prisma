@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  admin
+  user
+}
+
+model User {
+  id        String     @id @default(uuid())
+  email     String     @unique
+  password  String
+  roles     UserRole[]
+  createdAt DateTime   @default(now())
+}
+
+model UserRole {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      Role
+  createdAt DateTime @default(now())
+
+  @@unique([userId, role])
+}
+
+model House {
+  id        String        @id @default(uuid())
+  name      String        @unique
+  color     String        @default("#3B82F6")
+  results   EventResult[]
+  createdAt DateTime      @default(now())
+}
+
+model Event {
+  id        String        @id @default(uuid())
+  name      String
+  date      DateTime      @default(now())
+  results   EventResult[]
+  createdAt DateTime      @default(now())
+}
+
+model EventResult {
+  id        String   @id @default(uuid())
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  houseId   String
+  house     House    @relation(fields: [houseId], references: [id], onDelete: Cascade)
+  position  Int
+  points    Int
+  headline  String?
+  createdAt DateTime @default(now())
+
+  @@unique([eventId, position])
+}
