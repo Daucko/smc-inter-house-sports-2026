@@ -14,7 +14,7 @@ console.log(
   'DEBUG: Loaded DATABASE_URL:',
   process.env.DATABASE_URL
     ? 'YES (length: ' + process.env.DATABASE_URL.length + ')'
-    : 'NO'
+    : 'NO',
 );
 
 const prisma = new PrismaClient();
