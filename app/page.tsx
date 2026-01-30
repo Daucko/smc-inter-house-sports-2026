@@ -1,18 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Index from '@/pages/Index';
-import Auth from '@/pages/Auth';
-import Admin from '@/pages/Admin';
-import NotFound from '@/pages/NotFound';
+import { redirect } from 'next/navigation';
 
-export default function Home() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  );
+export default function Page() {
+  // Redirect to the actual home page in the (public) route group
+  redirect('/');
 }
