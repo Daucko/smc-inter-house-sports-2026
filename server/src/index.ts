@@ -8,13 +8,7 @@ import jwt from 'jsonwebtoken';
 dotenv.config();
 
 const app = express();
-const prisma = new PrismaClient({
-    datasources: {
-        db: {
-            url: process.env.DATABASE_URL
-        }
-    }
-});
+const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3001;
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
 
