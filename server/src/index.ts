@@ -1,13 +1,17 @@
+import dotenv from 'dotenv';
+import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-dotenv.config();
-
 const app = express();
+
+console.log('DEBUG: Loaded DATABASE_URL:', process.env.DATABASE_URL ? 'YES (length: ' + process.env.DATABASE_URL.length + ')' : 'NO');
+
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3001;
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
