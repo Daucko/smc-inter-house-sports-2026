@@ -13,20 +13,34 @@ const getHeaders = () => {
 
 export const api = {
   async get(endpoint: string) {
-    const response = await fetch(`${API_URL}${endpoint}`, {
-      headers: getHeaders(),
-    });
-    if (!response.ok) throw new Error('API request failed');
-    return response.json();
+    try {
+      const response = await fetch(`${API_URL}${endpoint}`, {
+        headers: getHeaders(),
+      });
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `API error: ${response.status}`);
+      }
+      return response.json();
+    } catch (error: any) {
+      throw new Error(error.message || 'Failed to connect to server');
+    }
   },
 
   async post(endpoint: string, data: any) {
-    const response = await fetch(`${API_URL}${endpoint}`, {
-      method: 'POST',
-      headers: getHeaders(),
-      body: JSON.stringify(data),
-    });
-    if (!response.ok) throw new Error('API request failed');
-    return response.json();
+    try {
+      const response = await fetch(`${API_URL}${endpoint}`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `API error: ${response.status}`);
+      }
+      return response.json();
+    } catch (error: any) {
+      throw new Error(error.message || 'Failed to connect to server');
+    }
   },
 };

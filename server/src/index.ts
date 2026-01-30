@@ -5,6 +5,8 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 import express from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { Pool } from 'pg';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
@@ -17,7 +19,9 @@ console.log(
     : 'NO',
 );
 
-const prisma = new PrismaClient();
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
 const PORT = process.env.PORT || 3001;
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
 
