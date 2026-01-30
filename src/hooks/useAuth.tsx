@@ -1,4 +1,12 @@
-import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
+'use client';
+
+import {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  ReactNode,
+} from 'react';
 import { api } from '@/lib/api';
 
 interface User {
@@ -23,15 +31,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token =
+      typeof window !== 'undefined' ? localStorage.getItem('token') : null;
     if (token) {
-      api.get('/auth/me')
+      api
+        .get('/auth/me')
         .then((data) => {
           setUser(data.user);
           setIsAdmin(data.isAdmin);
         })
         .catch(() => {
-          localStorage.removeItem('token');
+          if (typeof window !== 'undefined') {
+            localStorage.removeItem('token');
+          }
           setUser(null);
           setIsAdmin(false);
         })
@@ -44,7 +56,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signIn = async (email: string, password: string) => {
     try {
       const data = await api.post('/auth/signin', { email, password });
-      localStorage.setItem('token', data.token);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('token', data.token);
+      }
       setUser(data.user);
       setIsAdmin(data.isAdmin);
       return { error: null };
@@ -63,13 +77,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signOut = async () => {
-    localStorage.removeItem('token');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token');
+    }
     setUser(null);
     setIsAdmin(false);
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAdmin, isLoading, signIn, signUp, signOut }}>
+    <AuthContext.Provider
+      value={{ user, isAdmin, isLoading, signIn, signUp, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );
